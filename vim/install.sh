@@ -17,10 +17,6 @@ git clone -b release https://github.com/neoclide/coc.nvim $HOME/.vim/bundle/coc.
 git clone https://github.com/ayu-theme/ayu-vim.git $HOME/.vim/bundle/ayu-vim
 # lightline.vim
 git clone https://github.com/itchyny/lightline.vim.git $HOME/.vim/bundle/lightline.vim
-# vim-commentary
-git clone https://github.com/tpope/vim-commentary.git $HOME/.vim/bundle/vim-commentary
-# undo tree 
-git clone https://github.com/mbbill/undotree.git $HOME/.vim/bundle/undotree
 # fzf.vim
 git clone https://github.com/junegunn/fzf.vim.git $HOME/.vim/bundle/fzf.vim
 # Confirmation message
