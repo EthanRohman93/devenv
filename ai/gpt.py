@@ -11,7 +11,7 @@ def ask_openai(question, code=None):
     response = openai.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": "You are a helpfule computer science assistant and you will not output more than 50 tokens per response"},
+            {"role": "system", "content": "You are a helpful computer science assistant and you will not output more than 50 tokens per response"},
             {"role": "user", "content": prompt}
         ]
     )
