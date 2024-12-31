@@ -253,7 +253,7 @@ fd() {
   cd "$dir"
 }
 
-cs() {
+ca() {
     file=$(fzf --query="$1" --select-1 --exit-0)
     if [[ -n "$file" ]]; then
         head -n 35 "$file" | cat --paging=never "$file"
