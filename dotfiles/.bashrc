@@ -220,13 +220,12 @@ up() {
 # find file and open in vim
 fv() {
   fzf --preview 'batcat --color=always {}' \
-      --preview-window 'right:70%,border-left' \
+      --preview-window 'bottom:70%,border-top' \
       --height 70% \
       --info inline \
       --layout reverse \
-      --print0 | xargs -0 -o vim
+      --bind 'enter:become(vim {1})'
 }
-
 # find string in files and open in vim
 fs() {
   local rg_prefix='rg --column --line-number --no-heading --color=always --smart-case'
@@ -237,10 +236,11 @@ fs() {
       --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
       --delimiter ':' \
       --preview 'batcat --color=always {1} --highlight-line {2}' \
-      --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+      --preview-window 'bottom:60%,border-top' \
+      --layout reverse \
+      --height 70% \
       --bind 'enter:become(vim {1} +{2})'
 }
-
 # Search and cd into the selected directory with smaller height and preview
 fd() {
   local dir
@@ -253,14 +253,5 @@ fd() {
   cd "$dir"
 }
 
-ca() {
-    file=$(fzf --query="$1" --select-1 --exit-0)
-    if [[ -n "$file" ]]; then
-        head -n 35 "$file" | cat --paging=never "$file"
-    else
-        echo "No matching file found."
-    fi
-}
-export OPENAI_API_KEY=""
-source ~/ai.sh
+source ~/chat.sh
 export PATH="$HOME/zig-linux-x86_64-0.14.0-dev.2198+e5f5229fd:$PATH"
