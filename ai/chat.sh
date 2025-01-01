@@ -13,7 +13,7 @@ vsys() {
 }
 
 vuser() {
-    vim /home/user/devenv/ai.user.md
+    vim /home/user/devenv/ai/.user.md
 }
 
 vresp() {
