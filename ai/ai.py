@@ -2,6 +2,7 @@ import openai
 import os
 import sys
 
+
 class AiRunner:
     def __init__(self, api_key):
         self.api_key = api_key
@@ -23,7 +24,6 @@ class AiRunner:
         except IOError as e:
             print(f"Error writing file {file_path}: {e}", file=sys.stderr)
             return 1
-        
 
     def build_messages(self, system, user):
         messages = [

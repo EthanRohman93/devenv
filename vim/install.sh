@@ -17,6 +17,8 @@ git clone https://github.com/prabirshrestha/vim-lsp.git $HOME/.vim/bundle/vim-ls
 git clone https://github.com/mattn/vim-lsp-settings.git $HOME/.vim/bundle/vim-lsp-settings
 # asyncomplete
 git clone https://github.com/prabirshrestha/asyncomplete.vim.git $HOME/.vim/bundle/asyncomplete.vim
+# asyncomplete-lsp
+git clone https://github.com/prabirshrestha/asyncomplete-lsp.vim.git $HOME/.vim/bundle/asyncomplete-lsp.vim
 # gruvbox
 git clone https://github.com/morhetz/gruvbox.git $HOME/.vim/bundle/gruvbox
 # rose-pine
