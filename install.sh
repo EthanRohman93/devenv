@@ -4,12 +4,12 @@
 sudo apt update
 sudo apt install -y curl
 # install bash libs
-chmod +x /home/user/devenv/bash/install.sh
-/home/user/devenv/bash/install.sh
+chmod +x /home/test_beast/devenv/bash/install.sh
+/home/test_beast/devenv/bash/install.sh
 # install vim libs
-chmod +x /home/user/devenv/vim/install.sh
-/home/user/devenv/vim/install.sh
+chmod +x /home/test_beast/devenv/vim/install.sh
+/home/test_beast/devenv/vim/install.sh
 # Copy .bashrc
-cp /home/user/devenv/dotfiles/.bashrc /home/user/.bashrc
+cp /home/test_beast/devenv/dotfiles/.bashrc /home/test_beast/.bashrc
 # Copy .vimrc
-cp /home/user/devenv/dotfiles/.vimrc /home/user/.vimrc
+cp /home/test_beast/devenv/dotfiles/.vimrc /home/test_beast/.vimrc
