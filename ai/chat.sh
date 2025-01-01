@@ -23,7 +23,7 @@ vresp() {
 ai() {
     local CURRENT_VENV="$VIRTUAL_ENV"
     if [[ $# -gt 0 ]]; then
-        echo "$*" >> /home/user/devenv/ai/.user.md
+        echo "$*" >> /home/test_beast/devenv/ai/.user.md
     else
         cats /home/user/devenv/ai/.user.md
     fi

@@ -44,21 +44,21 @@ class AiRunner:
                 model = "gpt-4o",
                 messages = messages
             )
-            return response
+            return response.choices[0].message.content
         except Exception as e:
             print(f"Error with OpenAI API request: {e}", file=sys.stderr)
             return None
 
     def chat_runner(self):
-        system = self.read_file("/home/user/devenv/ai/.system.md")
-        user = self.read_file("/home/user/devenv/ai/.user.md")
+        system = self.read_file("/home/test_beast/devenv/ai/.system.md")
+        user = self.read_file("/home/test_beast/devenv/ai/.user.md")
         if system is None or user is None:
             return 1
         messages = self.build_messages(system, user)
         response = self.chat(messages)
         if response is None:
             return 1
-        return self.write_file("/home/user/devenv/ai/.response.md", response)
+        return self.write_file("/home/test_beast/devenv/ai/.response.md", response)
 
 
 def main():
