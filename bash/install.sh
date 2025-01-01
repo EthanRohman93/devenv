@@ -15,4 +15,10 @@ pyenv activate openai_env
 pip install -r ai/requirements.txt
 # deactivate venv
 pyenv deactivate
+# copy ai files to .devenv directory
+cp ../ai/ai.py $HOME/.devenv/ai.py
+cp ../ai/.response.md $HOME/.devenv/.response.md
+cp ../ai/.system.md $HOME/.devenv/.system.md
+cp ../ai/.user.md $HOME/.devenv/.user.md
+cp ../ai/chat.sh $HOME/.devenv/chat.sh
 

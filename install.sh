@@ -3,6 +3,8 @@
 # update packages
 sudo apt update
 sudo apt install -y curl
+# make devenv directory
+mkdir $HOME/.devenv
 # install bash libs
 bash/install.sh
 # install vim libs

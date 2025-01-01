@@ -50,15 +50,15 @@ class AiRunner:
             return None
 
     def chat_runner(self):
-        system = self.read_file("./.system.md")
-        user = self.read_file("./.user.md")
+        system = self.read_file("~/.devenv/.system.md")
+        user = self.read_file("~/.devenv/.user.md")
         if system is None or user is None:
             return 1
         messages = self.build_messages(system, user)
         response = self.chat(messages)
         if response is None:
             return 1
-        return self.write_file("./.response.md", response)
+        return self.write_file("~/.devenv/.response.md", response)
 
 
 def main():
