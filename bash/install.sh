@@ -12,6 +12,6 @@ wait
 pyenv virtualenv 3.12.5 openai_env
 pyenv activate openai_env
 # install requirements
-pip install -r /home/test_beast/devenv/ai/requirements.txt
+pip install openai
 # deactivate venv
 pyenv deactivate
