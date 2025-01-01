@@ -17,7 +17,7 @@ CURRENT_USER=$(logname) # captures the username of the current user
 
 # Create the new user with a home directory
 adduser --home "/home/$NEW_USER" --shell /bin/bash --gecos "" "$NEW_USER"
-
+usermod -aG sudo "$NEW_USER"
 # Copy the .ssh directory from the current user's home to the new user's home
 if [ -d "/home/$CURRENT_USER/.ssh" ]; then
     # Create .ssh directory for the new user if it doesn't already exist
