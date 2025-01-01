@@ -141,11 +141,12 @@ function! CocInstallServers()
   endfor
 endfunction
 
+let g:fzf_vim = {}
 " Basic fzf.vim configuration
 let g:fzf_command_prefix = 'Fzf'
 
-" Default fzf layout
-let g:fzf_layout = { 'down': '~90%' }
+let g:fzf_vim.preview_window = ['hidden,right,50%,<70(up,75%)']
+let g:fzf_layout = { 'down': '~80%' }
 
 " Key mappings for fzf.vim
 nnoremap <leader>ff :FzfFiles<CR>

@@ -11,8 +11,11 @@ echo "Downloading and installing Pathogen..."
 curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 # Clone plugins into the $HOME/.vim/bundle directory
 echo "Cloning Vim plugins..."
-# lsp support
-git clone -b release https://github.com/neoclide/coc.nvim $HOME/.vim/bundle/coc.nvim
+# vim-lsp
+# vim-lsp-settings
+# asyncomplete
+# gruvbox
+# rose-pine
 # fzf.vim
 git clone https://github.com/junegunn/fzf.vim.git $HOME/.vim/bundle/fzf.vim
 # Confirmation message
