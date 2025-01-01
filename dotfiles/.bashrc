@@ -253,5 +253,5 @@ fd() {
   cd "$dir"
 }
 
-source ~/.devenv/chat.sh
+source /home/user/devenv/chat.sh
 export PATH="$HOME/zig-linux-x86_64-0.14.0-dev.2198+e5f5229fd:$PATH"

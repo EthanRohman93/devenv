@@ -3,13 +3,13 @@
 # update packages
 sudo apt update
 sudo apt install -y curl
-# make devenv directory
-mkdir $HOME/.devenv
 # install bash libs
-bash/install.sh
+chmod +x /home/user/devenv/bash/install.sh
+/home/user/devenv/bash/install.sh
 # install vim libs
-vim/install.sh
+chmod +x /home/user/devenv/vim/install.sh
+/home/user/devenv/vim/install.sh
 # Copy .bashrc
-cp dotfiles/.bashrc $HOME/.bashrc
+cp /home/user/devenv/dotfiles/.bashrc /home/user/.bashrc
 # Copy .vimrc
-cp dotfiles/.vimrc $HOME/.vimrc
+cp /home/user/devenv/dotfiles/.vimrc /home/user/.vimrc
