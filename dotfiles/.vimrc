@@ -57,8 +57,6 @@ if !has('gui_running')
 endif
 set background=dark
 colorscheme gruvbox
-let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox'
 
 " translucent vim background on everyting including special chars and status
 " lines
@@ -90,76 +88,63 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 "always shows status line in every pane
 set laststatus=2
-"lsp stuff
-highlight CocErrorHighlight ctermfg=red guifg=red cterm=underline gui=underline
-highlight CocErrorSign ctermfg=red guifg=red cterm=underline gui=underline
-highlight CocErrorVirtualText ctermfg=red guifg=red cterm=underline gui=underline
-" Trigger completion manually with Ctrl-Space
-inoremap <silent><expr> <c-space> coc#refresh()
-" jumps to the definition of the symbol
-nmap <silent> gd <Plug>(coc-definition)
-" shows references to symbol
-nmap <silent> gr <Plug>(coc-references)
-" Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-" rename symbol
-nmap <leader>rn <Plug>(coc-rename)
-autocmd ColorScheme *
-    \ hi CocUnusedHighlight cterm=underline gui=underline guifg=#808080
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" Formatting selected code
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-"servers
-" Define an autocommand group to handle the installation
-augroup CoCInstall
-  autocmd!
-  autocmd VimEnter * call CocInstallServers()
-augroup END
-" Function to check if a specific CoC server is installed
-function! IsCocServerInstalled(server)
-  let extensions_dir = expand('~/.config/coc/extensions/node_modules/')
-  return isdirectory(extensions_dir . '/' . a:server)
-endfunction
-
-function! CocInstallServers()
-  let servers = ['coc-tsserver', 'coc-json', 'coc-pyright', 'coc-html', 'coc-css', 'coc-sh', 'coc-docker', 'coc-java', 'coc-markdownlint']
-  for server in servers
-    if !IsCocServerInstalled(server)
-      execute 'CocInstall ' . server
-    endif
-  endfor
-endfunction
-
+" fzf
 let g:fzf_vim = {}
 " Basic fzf.vim configuration
 let g:fzf_command_prefix = 'Fzf'
-
 let g:fzf_vim.preview_window = ['hidden,right,50%,<70(up,75%)']
 let g:fzf_layout = { 'down': '~80%' }
-
 " Key mappings for fzf.vim
-nnoremap <leader>ff :FzfFiles<CR>
+nnoremap <leader>fv :FzfFiles<CR>
 nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>h :FzfHistory<CR>
 nnoremap <leader>fs :FzfRg<CR>
 nnoremap <leader>fg :FzfGFiles?<CR>
 nnoremap <leader>fG :FzfGFiles<CR>
-" comments selected lines and current lines
-nmap <leader>c <Plug>CommentaryLine
-vmap <leader>c <Plug>Commentary
-" undotree
-nnoremap <leader>u :UndotreeToggle<cr>
+" gpt interactions
+command! System edit /home/user/devenv/ai/.system.md
+command! User edit /home/user/devenv/ai/.user.md
+command! Response edit /home/user/devenv/ai/.response.md
+nnoremap <leader>as :System<CR>
+nnoremap <leader>au :User<CR>
+nnoremap <leader>ar :Response<CR>
+" vim-lsp
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_echo_delay = 200
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_float_delay = 200
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_diagnostics_signs_insert_mode_enabled = 1
+let g:lsp_diagnostics_signs_delay = 200
+let g:lsp_document_highlight_enabled = 0
+" vim-lsp-settings
+imap <c-l> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_popup = 0
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+    " refer to doc to add more commands
+endfunction
 " WSL yank support
 let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
 if executable(s:clip)
@@ -168,9 +153,3 @@ if executable(s:clip)
         autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
     augroup END
 endif
-" gpt interactions
-command! Prompt edit /home/rohman/.prompt
-command! Response edit /home/rohman/.aiv
-nnoremap <leader>p :Prompt<CR>
-nnoremap <leader>o :Response<CR>
-
