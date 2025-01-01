@@ -1,15 +1,18 @@
 #!/bin/bash
 
-# update packages
+# Update packages
 sudo apt update
 sudo apt install -y curl
-# install bash libs
-chmod +x /home/test_beast/devenv/bash/install.sh
-/home/test_beast/devenv/bash/install.sh
-# install vim libs
-chmod +x /home/test_beast/devenv/vim/install.sh
-/home/test_beast/devenv/vim/install.sh
+local SUDO_USER_NAME=$(whoami)
+# Identify the current sudo user's home directory
+# Install bash libs
+chmod +x "/home/${SUDO_USER_NAME}/devenv/bash/install.sh"
+/home/${SUDO_USER_NAME}/devenv/bash/install.sh
+# Install vim libs
+chmod +x "/home/${SUDO_USER_NAME}/devenv/vim/install.sh"
+/home/${SUDO_USER_NAME}/devenv/vim/install.sh
 # Copy .bashrc
-cp /home/test_beast/devenv/dotfiles/.bashrc /home/test_beast/.bashrc
+cp "/home/${SUDO_USER_NAME}/devenv/dotfiles/.bashrc" "/home/${SUDO_USER_NAME}/.bashrc"
+source "/home/${SUDO_USER_NAME}/.bashrc"
 # Copy .vimrc
-cp /home/test_beast/devenv/dotfiles/.vimrc /home/test_beast/.vimrc
+cp "/home/${SUDO_USER_NAME}/devenv/dotfiles/.vimrc" "/home/${SUDO_USER_NAME}/.vimrc"

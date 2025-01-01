@@ -57,6 +57,7 @@ if !has('gui_running')
 endif
 set background=dark
 colorscheme gruvbox
+" colorscheme rosepine
 
 " translucent vim background on everyting including special chars and status
 " lines
@@ -102,6 +103,7 @@ nnoremap <leader>fs :FzfRg<CR>
 nnoremap <leader>fg :FzfGFiles?<CR>
 nnoremap <leader>fG :FzfGFiles<CR>
 " gpt interactions
+" file paths
 command! System edit /home/user/devenv/ai/.system.md
 command! User edit /home/user/devenv/ai/.user.md
 command! Response edit /home/user/devenv/ai/.response.md
@@ -119,6 +121,7 @@ let g:lsp_diagnostics_highlights_enabled = 0
 let g:lsp_diagnostics_signs_insert_mode_enabled = 1
 let g:lsp_diagnostics_signs_delay = 200
 let g:lsp_document_highlight_enabled = 0
+nnoremap <leader>ls :LspInstallServer<CR>
 " vim-lsp-settings
 imap <c-l> <Plug>(asyncomplete_force_refresh)
 let g:asyncomplete_auto_popup = 0
@@ -139,7 +142,6 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> K <plug>(lsp-hover)
     nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
-
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
     
