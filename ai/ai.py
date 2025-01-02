@@ -4,9 +4,10 @@ import sys
 
 
 class AiRunner:
-    def __init__(self, api_key):
+    def __init__(self, api_key, sudo_user_name):
         self.api_key = api_key
         openai.api_key = self.api_key
+        self.sudo_user_name = sudo_user_name
 
     def read_file(self, file_path):
         try:
@@ -50,23 +51,24 @@ class AiRunner:
             return None
 
     def chat_runner(self):
-        system = self.read_file("/home/test_beast/devenv/ai/.system.md")
-        user = self.read_file("/home/test_beast/devenv/ai/.user.md")
+        system = self.read_file(f"/home/{self.sudo_user_name}/devenv/ai/.system.md")
+        user = self.read_file(f"/home/{self.sudo_user_name}/devenv/ai/.user.md")
         if system is None or user is None:
             return 1
         messages = self.build_messages(system, user)
         response = self.chat(messages)
         if response is None:
             return 1
-        return self.write_file("/home/test_beast/devenv/ai/.response.md", response)
+        return self.write_file(f"/home/{self.sudo_user_name}/devenv/ai/.response.md", response)
 
 
 def main():
     api_key = os.getenv("OPENAI_API_KEY")
+    sudo_user_name = os.getenv("SUDO_USER_NAME")
     if api_key is None:
         print("API key not found.")
         sys.exit(1)
-    runner = AiRunner(api_key)
+    runner = AiRunner(api_key, sudo_user_name)
     status = runner.chat_runner()
     if status != 0:
         print("Process completed with errors.", file=sys.stderr)
