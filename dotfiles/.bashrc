@@ -195,6 +195,7 @@ alias p='pwd'
 alias repo='cd /mnt/c/repos/'
 alias time='vim ~/.time.md'
 alias todo='vim ~/.TODO.md'
+alias files='vim ~/devenv/vim/files.txt'
 ###############################################################################
 # functions
 tv() {

@@ -1,0 +1,1 @@
+/mnt/c/repos/carbon-intensity-client/test/mocks/mock-translations.ts

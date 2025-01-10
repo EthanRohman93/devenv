@@ -110,6 +110,16 @@ command! Response edit /home/user/devenv/ai/.response.md
 nnoremap <leader>as :System<CR>
 nnoremap <leader>au :User<CR>
 nnoremap <leader>ar :Response<CR>
+" open stashed files
+function! OpenFilesFromList()
+  let l:filepath = expand('~/devenv/vim/files.txt')
+  if filereadable(l:filepath)
+    for l:line in readfile(l:filepath)
+      execute 'edit' l:line
+    endfor
+  endif
+endfunction
+nnoremap <leader>ob :OpenFilesFromList<CR>
 " vim-lsp
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_signs_enabled = 1
